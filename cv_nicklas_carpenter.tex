@@ -1,0 +1,234 @@
+% Academic CV
+% Author: Nicklas Carpenter
+% 
+% Originally based on the Academic CV LaTeX Template by Dubasi Pavan Kumar,
+% but appreciatively modified and restructured.
+%
+
+\documentclass{article}
+
+% Package imports
+\usepackage{latexsym}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage{wrapfig}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage[top=0.5in, bottom=0.5in, left=0.6in, right=0.625in]{geometry}
+\usepackage{marvosym}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{cfr-lm}
+\usepackage[T1]{fontenc}
+\usepackage{fontawesome5}
+
+% Color definitions
+\definecolor{darkblue}{RGB}{0,0,139}
+\definecolor{darkgrey}{RGB}{42,42,42}
+
+%%% Page layout %%%
+\setlength{\multicolsep}{0pt} 
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\setlength{\footskip}{5pt} % Addressing fancyhdr warning
+
+% Hyperlink setup (moved after fancyhdr to address warning)
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=darkblue,
+	filecolor=darkblue,
+	urlcolor=darkblue,
+}
+% URL style
+\urlstyle{same}
+%%%
+
+% Section formatting
+\titleformat{\section}{\scshape\raggedright\large}{}{0em}{}[\titlerule\vspace{0em}]
+
+%%% Custom commands %%%
+\newcommand{\vsep}{{\large\emph{|}}}
+
+\newcommand{\cvbullet}{\item[\(\circ\)]}
+
+% Commands for icon sizing and positioning
+\newcommand{\socialicon}[1]{{\raisebox{-0.05em}{\resizebox{!}{0.8em}{#1}}}}
+\newcommand{\cvlinkedin}[1]{\href{https://www.linkedin.com/in/#1}{\socialicon{\faLinkedin}}\hspace{0.75ex}#1}
+\newcommand{\cvgithub}[1]{\href{https://github.com/#1}{\socialicon{\faGithub}}\hspace{0.75ex}#1}
+\newcommand{\cvemail}[1]{\href{mailto:#1}{\faEnvelope}\hspace{0.75ex}#1}
+
+%\newenvironment{cvsection}[1]{\section{#1}}
+\newenvironment{cvsection}[1]
+	{\section{#1}\begin{description}[leftmargin=*,labelsep=1mm]}
+	{\vspace{0.25em}\end{description}}
+%\newenvironment{cvlist}{\begin{description}[leftmargin=*,labelsep=1mm]}{\vspace{0.25em}\end{description}}
+
+\newenvironment{cvjob}[3]{
+	\item\begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+		\textbf{#1} {\vsep} {\small\textit{#2}} & {\footnotesize#3}
+	\end{tabular*}\\
+	\begin{minipage}[b]{0.66\textwidth}
+		\vspace{0.33em}
+		\begin{flushleft}
+		\begin{itemize}
+		\addtolength{\itemsep}{-0.5em}
+
+}{\end{itemize}\end{flushleft}\end{minipage}\vspace{-0.25em}}
+
+\newenvironment{cvproject}[2]{
+	\item\begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+		\textbf{#1} & {\footnotesize{#2}}
+	\end{tabular*}\\
+	\begin{minipage}[b]{0.66\textwidth}
+		\vspace{0.33em}
+		\begin{flushleft}
+		\begin{itemize}
+		\addtolength{\itemsep}{-0.5em}
+
+}{\end{itemize}\end{flushleft}\end{minipage}\vspace{-0.25em}}
+
+\newcommand{\cvdegree}[4] {
+	\item\begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+		\textbf{#1} \\
+		{\small{#2}}, {\small{#3}} & {\footnotesize{#4}}
+	\end{tabular*}
+}
+
+% Font options
+\newcommand{\headerfontviii}{\fontfamily{qpl}\selectfont} 	% Quasi-Palatino (another elegant serif option)
+
+%%% Publications section formatting %%%
+% Trick to remove bibliography citation label courtesy of
+% https://stackoverflow.com/questions/3002506/can-i-remove-the-labels-from-the-bibliography-while-keeping-them-in-citations
+\makeatletter
+\def\@biblabel#1{}
+\makeatother
+
+% Change title of "bibliography" to Publications
+\renewcommand{\refname}{Publications}
+%%%
+
+\begin{document}
+\headerfontviii
+
+% Header
+\begin{center}
+	{\Huge\textbf{Nicklas Carpenter}}\\
+\end{center}
+\begin{center}
+	\small{\cvemail{npcarpenter@arizona.edu}
+		\hspace{1em}{\vsep}\hspace{1em} \cvlinkedin{nicklas-carpenter}
+		\hspace{1em}{\vsep}\hspace{1em} \cvgithub{Nicklas-Carpenter}
+	}\\
+	\vspace{0.5em}
+\end{center}
+
+\begin{cvsection}{Education}
+	\cvdegree{Rose-Hulman Institute of Technology}{Bachelor of Science}{Computer Engineering}{May 2021}
+\end{cvsection}
+
+\begin{cvsection}{Industry Experience}
+	\begin{cvjob}{Rincon Research Corporation}{Embedded Software Engineer}{June 2021 -- Present}
+		\cvbullet Subject-matter expert in embedded, Linux-based operating systems
+		\cvbullet Maintaining a custom, Arch-Linux-based embedded operating system for AMD SoCs
+		\cvbullet Supporting digital radio applications, including high-bandwidth and
+			high-frequency transceivers, and high-speed network packetization and
+			retransmission
+		\cvbullet Engineer Linux kernel images: configure, patch,
+			and cross-compile kernel sources; build and install out-of-tree kernel modules
+		\cvbullet Work with internals of various Linux subsytems including UIO, VFIO, $\textrm{I}^2$C, SPI,
+			and UART
+		\cvbullet Live reconfigure AMD SoC hardware including
+			FPGA reprogramming, hardware configuration register modification, sysfs driver
+			rebinding, and device-tree-overlay rebinding
+		\cvbullet Live JTAG debug machine code of bootloader programs such as U-Boot
+		\cvbullet Develop PetaLinux and Yocto-based operating system images,
+			including handling complex dependency ordering
+
+	\end{cvjob}
+	\begin{cvjob}{NFocus Consulting}{Software Engineer}{June -- August 2018 -- 2020}
+		\cvbullet Architected and developed front-end web application providing users a
+			simple graphical interface to perform advanced pattern-matching queries
+			on postal records
+		\cvbullet Implemented back-end API components of a web application designed to generate
+			postal mailing lists, accouting for factors such as demographics, mail fees,
+			postal routes, schedules, and delivery discounts
+	\end{cvjob}
+\end{cvsection}
+
+\begin{cvsection}{Research Experience}
+	\begin{cvjob}{Abstracting Machine-Independent Complexity}{University of Arizona}{May -- August 2024}
+		\cvbullet Explored the implications of weakening one of Blum's axioms for
+			machine-independent complexity measures
+		\cvbullet Proved that key results in complexity theory failed to hold under
+			the weakened system of axioms
+		\cvbullet Determined an aproach to address over-weakening by introducing new axioms as possible future work
+	\end{cvjob}
+	\begin{cvjob}{Evolving Analog Circuits on an FPGA}{Rose-Hulman-Institute of Technology}{September 2019 -– May 2021}
+		\cvbullet Worked on project with the goal of building a system that used machine-learning
+			algorithms to iteratively generate analog circuits that run on an FPGA
+		\cvbullet Developed an open-source set of tools that enabled fully-autonomous experiements
+			to be run on a inexpensive reference hardware setup
+	\end{cvjob}
+\end{cvsection}
+
+\begin{cvsection}{Academic Projects}
+	\begin{cvproject}{Imperative Interpreter (class project)}{March -- May 2023}
+		\cvbullet Designed and developed an interpreter for an imperative language
+		\cvbullet Implemented language features including recursive function calls, nested block
+			lexical scoping, loop-based control flow, and local and global variables with shadowing
+	\end{cvproject}
+	\begin{cvproject}{Kernel Development (independent-study project)}{March -- May 2021}
+		\cvbullet Designed small, Unix-like kernel that ran on an i386 virtual machine
+		\cvbullet Handled CPU and MMU initializtion, including establishing paging infrastructure
+		\cvbullet Implemented kernel features including a filesystem, interrupt handling, system
+			calls, kernel-interfaced hardware drivers, and task-switching
+	\end{cvproject}
+	\begin{cvproject}{Self JIT Compiler (senior capstone project)}{September 2020 -- May 2021}
+		\cvbullet Implemented a JIT compiler for a subset of the Self programming language
+		\cvbullet Created a custom operator-precedence parser to handle Self's complex expression
+			precedence rules
+		\cvbullet Invented and implemented unique method for dynamic linking of compiled Self code
+			to machine code
+		\cvbullet Developed compiler's internal representation of Self objects to ensure coherence between
+			machine code routines and the dynamic objects of Self
+	\end{cvproject}
+	\begin{cvproject}{CPU Design (class project)}{October -- November 2019}
+		\cvbullet Designed a load-store RISC instruction set archictecture
+		\cvbullet Developed a corresponding CPU implementation in Verilog
+	\end{cvproject}
+\end{cvsection}
+
+%%% Publications
+%\nocite{*}
+\begin{thebibliography}{1}
+\begin{minipage}{0.97\textwidth}
+\bibitem{10758422}
+{\sc Loyd, A., Gaull, D., Manthey, L., Carpenter, N., Whitley, D., and Yoder,
+  J.}
+\newblock Bitstream evolution: an open-source fpga intrinsic evolvable hardware
+  toolkit.
+\newblock {\em Submitted to IEEE Access\/} (11 2024).
+
+\bibitem{10.1162/artl_a_00377}
+{\sc Whitley, D., Yoder, J., and Carpenter, N.}
+\newblock Intrinsic evolution of analog circuits using field programmable gate
+  arrays.
+\newblock {\em Artificial Life 28}, 4 (11 2022), 499--516.
+\bibitem{10.1162/artl_a_00377}
+\end{minipage}
+\end{thebibliography}
+%\bibliographystyle{acm}
+%\bibliography{pubs}
+%%%
+
+\end{document}

@@ -1,0 +1,9 @@
+# Ignore LaTeX temporary files
+*.aux
+*.bbl 
+*.blg
+*.out
+*.log
+
+# Don't include build output
+*.pdf
